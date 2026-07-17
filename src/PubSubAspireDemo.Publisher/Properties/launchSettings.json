@@ -1,0 +1,17 @@
+{
+  "profiles": {
+    "Publisher Local": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development",
+        "PUBSUB_EMULATOR_HOST": "localhost:8085",
+        "PUBSUB_PROJECT_ID": "local-project",
+        "PubSub__UseEmulator": "true",
+        "PubSub__ProjectId": "local-project",
+        "PubSub__TopicId": "pedido-criado-topic",
+        "PubSub__SubscriptionId": "pedido-criado-worker-sub",
+        "PubSub__EmulatorHost": "localhost:8085"
+      }
+    }
+  }
+}

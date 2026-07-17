@@ -1,0 +1,23 @@
+﻿{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "PubSubAspireDemo.Api": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:7044;http://localhost:5044",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DOTNET_ENVIRONMENT": "Development",
+        "PUBSUB_EMULATOR_HOST": "127.0.0.1:8085",
+        "PUBSUB_PROJECT_ID": "local-project",
+        "PubSub__UseEmulator": "true",
+        "PubSub__ProjectId": "local-project",
+        "PubSub__TopicId": "pedido-criado-topic",
+        "PubSub__SubscriptionId": "pedido-criado-worker-sub",
+        "PubSub__EmulatorHost": "127.0.0.1:8085"
+      }
+    }
+  }
+}

@@ -1,0 +1,237 @@
+﻿[*.cs]
+dotnet_sort_system_directives_first = true
+dotnet_separate_import_directive_groups = true
+
+#### Naming styles ####
+
+# Naming rules
+
+dotnet_naming_rule.private_or_internal_field_should_be_private_fields.severity = suggestion
+dotnet_naming_rule.private_or_internal_field_should_be_private_fields.symbols = private_or_internal_field
+dotnet_naming_rule.private_or_internal_field_should_be_private_fields.style = private_fields
+
+# Symbol specifications
+
+dotnet_naming_symbols.private_or_internal_field.applicable_kinds = field
+dotnet_naming_symbols.private_or_internal_field.applicable_accessibilities = internal, private, private_protected
+dotnet_naming_symbols.private_or_internal_field.required_modifiers = 
+
+# Naming styles
+
+dotnet_naming_style.private_fields.required_prefix = _
+dotnet_naming_style.private_fields.required_suffix = 
+dotnet_naming_style.private_fields.word_separator = 
+dotnet_naming_style.private_fields.capitalization = camel_case
+csharp_using_directive_placement = outside_namespace:silent
+csharp_prefer_simple_using_statement = true:suggestion
+csharp_prefer_braces = true:silent
+csharp_style_namespace_declarations = block_scoped:silent
+csharp_style_prefer_method_group_conversion = true:silent
+csharp_style_prefer_top_level_statements = true:silent
+csharp_style_prefer_primary_constructors = true:suggestion
+csharp_prefer_system_threading_lock = true:suggestion
+csharp_style_expression_bodied_methods = false:silent
+csharp_style_expression_bodied_constructors = false:silent
+csharp_style_expression_bodied_operators = false:silent
+csharp_style_expression_bodied_properties = true:silent
+csharp_style_expression_bodied_indexers = true:silent
+csharp_style_expression_bodied_accessors = true:silent
+csharp_style_expression_bodied_lambdas = true:silent
+csharp_style_expression_bodied_local_functions = false:silent
+csharp_indent_labels = one_less_than_current
+csharp_space_around_binary_operators = before_and_after
+
+[*.{cs,vb}]
+#### Naming styles ####
+
+# Naming rules
+
+dotnet_naming_rule.interface_should_be_begins_with_i.severity = suggestion
+dotnet_naming_rule.interface_should_be_begins_with_i.symbols = interface
+dotnet_naming_rule.interface_should_be_begins_with_i.style = begins_with_i
+
+dotnet_naming_rule.types_should_be_pascal_case.severity = suggestion
+dotnet_naming_rule.types_should_be_pascal_case.symbols = types
+dotnet_naming_rule.types_should_be_pascal_case.style = pascal_case
+
+dotnet_naming_rule.non_field_members_should_be_pascal_case.severity = suggestion
+dotnet_naming_rule.non_field_members_should_be_pascal_case.symbols = non_field_members
+dotnet_naming_rule.non_field_members_should_be_pascal_case.style = pascal_case
+
+# Symbol specifications
+
+dotnet_naming_symbols.interface.applicable_kinds = interface
+dotnet_naming_symbols.interface.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
+dotnet_naming_symbols.interface.required_modifiers = 
+
+dotnet_naming_symbols.types.applicable_kinds = class, struct, interface, enum
+dotnet_naming_symbols.types.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
+dotnet_naming_symbols.types.required_modifiers = 
+
+dotnet_naming_symbols.non_field_members.applicable_kinds = property, event, method
+dotnet_naming_symbols.non_field_members.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
+dotnet_naming_symbols.non_field_members.required_modifiers = 
+
+# Naming styles
+
+dotnet_naming_style.begins_with_i.required_prefix = I
+dotnet_naming_style.begins_with_i.required_suffix = 
+dotnet_naming_style.begins_with_i.word_separator = 
+dotnet_naming_style.begins_with_i.capitalization = pascal_case
+
+dotnet_naming_style.pascal_case.required_prefix = 
+dotnet_naming_style.pascal_case.required_suffix = 
+dotnet_naming_style.pascal_case.word_separator = 
+dotnet_naming_style.pascal_case.capitalization = pascal_case
+
+dotnet_naming_style.pascal_case.required_prefix = 
+dotnet_naming_style.pascal_case.required_suffix = 
+dotnet_naming_style.pascal_case.word_separator = 
+dotnet_naming_style.pascal_case.capitalization = pascal_case
+dotnet_style_coalesce_expression = true:suggestion
+dotnet_style_null_propagation = true:suggestion
+dotnet_style_prefer_is_null_check_over_reference_equality_method = true:suggestion
+dotnet_style_prefer_auto_properties = true:silent
+dotnet_style_object_initializer = true:suggestion
+dotnet_style_collection_initializer = true:suggestion
+dotnet_style_prefer_simplified_boolean_expressions = true:suggestion
+dotnet_style_prefer_conditional_expression_over_assignment = true:silent
+dotnet_style_prefer_conditional_expression_over_return = true:silent
+dotnet_style_explicit_tuple_names = true:suggestion
+dotnet_style_operator_placement_when_wrapping = beginning_of_line
+tab_width = 4
+indent_size = 4
+end_of_line = crlf
+dotnet_style_prefer_inferred_tuple_names = true:suggestion
+
+dotnet_code_quality.ca1711.allowed_suffixes = Flag|Flags
+
+
+
+# Ordenar membros da classe (prioriza propriedades antes dos métodos e construtores)
+dotnet_sort_member_declarations = access
+
+# CS8604: Possible null reference argument for parameter.
+dotnet_diagnostic.CS8604.severity = suggestion
+
+# CS8618: Non-nullable variable must contain a non-null value when exiting constructor. Consider declaring it as nullable.
+dotnet_diagnostic.CS8618.severity = none 
+
+# CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
+dotnet_diagnostic.CS8632.severity = none
+
+# CA1002: Não expor listas genéricas
+dotnet_diagnostic.CA1002.severity = suggestion
+
+# CA1008: Enumerações devem ter valor zero
+dotnet_diagnostic.CA1008.severity = suggestion
+
+# CA1031: Não capturar tipos de exceção geral
+dotnet_diagnostic.CA1031.severity = none
+
+# CA1032: Implement standard exception constructors
+dotnet_diagnostic.CA1032.severity = none
+
+# CA1040: Evitar interfaces vazias
+dotnet_diagnostic.CA1040.severity = none
+
+# CA1054: Parâmetros de URI não devem ser cadeias de caracteres
+dotnet_diagnostic.CA1054.severity = none
+
+# CA1056: Propriedades de URI não devem ser cadeias de caracteres
+dotnet_diagnostic.CA1056.severity = none
+
+# CA1062: Validar argumentos de métodos públicos
+dotnet_diagnostic.CA1062.severity = none
+
+# CA1303: Não passar literais como parâmetros localizados
+dotnet_diagnostic.CA1303.severity = none
+
+# CA1304: Especificar CultureInfo
+dotnet_diagnostic.CA1304.severity = none
+
+# CA1305: Especificar IFormatProvider
+dotnet_diagnostic.CA1305.severity = none
+
+# CA1307: Especificar StringComparison para garantir a clareza
+dotnet_diagnostic.CA1307.severity = none
+
+# CA1309: Usar StringComparison ordinal
+dotnet_diagnostic.CA1309.severity = suggestion
+
+# CA1310: Especificar StringComparison para garantir a exatidão
+dotnet_diagnostic.CA1310.severity = none
+
+# CA1311: Especificar uma cultura ou usar uma versão invariável
+dotnet_diagnostic.CA1311.severity = none
+
+# CA1508: Evitar código condicional morto
+dotnet_diagnostic.CA1508.severity = none
+
+# CA1515: Considere tornar os tipos públicos internos
+dotnet_diagnostic.CA1515.severity = suggestion
+
+# CA1707: Identificadores não devem conter sublinhados
+dotnet_diagnostic.CA1707.severity = none
+
+# CA1711: Identificadores não devem ter um sufixo incorreto
+dotnet_diagnostic.CA1711.severity = none
+
+# CA1716: Identificadores não devem corresponder a palavras-chave
+dotnet_diagnostic.CA1716.severity = suggestion
+
+# CA1810: Inicializar campos estáticos de tipo de referência em linha
+dotnet_diagnostic.CA1810.severity = none
+
+# CA1812: Evitar classes internas sem instâncias
+dotnet_diagnostic.CA1812.severity = none
+
+# CA1822: Marcar membros como estáticos
+dotnet_diagnostic.CA1822.severity = none
+
+# CA1823: Evitar campos particulares não utilizados
+dotnet_diagnostic.CA1823.severity = none
+
+# CA1848: Usar os delegados LoggerMessage
+dotnet_diagnostic.CA1848.severity = none
+
+# CA1849: Chamar métodos assíncronos quando em um método assíncrono
+dotnet_diagnostic.CA1849.severity = none
+
+# CA1851: diversas enumerações da coleção IEnumerable são possíveis
+dotnet_diagnostic.CA1851.severity = none
+
+# CA1854: Preferir o método IDictionary.TryGetValue(TKey, out TValue)
+dotnet_diagnostic.CA1854.severity = suggestion
+
+# CA1860: evite usar o método de extensão 'Enumerable.Any()'
+dotnet_diagnostic.CA1860.severity = suggestion
+
+# CA1861: Evitar matrizes constantes como argumentos
+dotnet_diagnostic.CA1861.severity = none
+
+# CA1869: armazenar em cache e reutilizar instâncias de "JsonSerializerOptions"
+dotnet_diagnostic.CA1869.severity = suggestion
+
+# CA2000: Descartar objetos antes de perder o escopo
+dotnet_diagnostic.CA2000.severity = suggestion
+
+# CA2007: não aguardar diretamente uma tarefa
+dotnet_diagnostic.CA2007.severity = none
+
+# CA2227: Propriedades de coleção devem ser somente leitura
+dotnet_diagnostic.CA2227.severity = none
+
+# CA2254: o modelo deve ser uma expressão estática
+dotnet_diagnostic.CA2254.severity = none
+
+# CA5394: Não usar aleatoriedade não segura
+dotnet_diagnostic.CA5394.severity = none
+
+# IDE0320: Tornar a função anônima estática
+dotnet_diagnostic.IDE0320.severity = none
+
+# IDE0051: Remover membro particular não utilizado
+dotnet_diagnostic.IDE0051.severity = none
+
+
