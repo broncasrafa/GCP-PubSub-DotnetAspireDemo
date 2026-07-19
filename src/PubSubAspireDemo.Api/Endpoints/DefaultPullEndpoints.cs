@@ -1,19 +1,20 @@
 ﻿using PubSubAspireDemo.Api.Models;
 using PubSubAspireDemo.PubSub;
+using PubSubAspireDemo.PubSub.Pull;
 using PubSubAspireDemo.PubSub.Contracts;
 
 namespace PubSubAspireDemo.Api.Endpoints;
 
-public static class DefaultEndpoints
+public static class DefaultPullEndpoints
 {
-    public static IEndpointRouteBuilder MapDefaultEndpoints(this IEndpointRouteBuilder builder)
+    public static IEndpointRouteBuilder MapDefaultPullEndpoints(this IEndpointRouteBuilder builder)
     {
-        var routes = builder.MapGroup("api/publish").WithTags("PublicarMensagens");
+        var routes = builder.MapGroup("api/aspire/pubsub/pull").WithTags("PublicarMensagens-Pull");
 
         routes.MapGet("/", ApiInfo)
-            .WithName("Info")
-            .WithDescription("Endpoint default com as informações da api")
-            .WithSummary("Endpoint default com as informações da api");
+            .WithName("InfoPull")
+            .WithDescription("Endpoint default com as informações do modo PULL")
+            .WithSummary("Endpoint default com as informações do modo PULL");
 
         routes.MapPost("/pedidos/publicar", PublishMessage)
             .WithName("PublicarPedidoCriado")
@@ -35,8 +36,8 @@ public static class DefaultEndpoints
             status = "running",
             endpoints = new[]
                 {
-                    "POST /pedidos/publicar",
-                    "POST /pedidos/publicar-fake"
+                    "POST /api/aspire/pubsub/pull/pedidos/publicar",
+                    "POST /api/aspire/pubsub/pull/pedidos/publicar-fake"
                 }
         });
 

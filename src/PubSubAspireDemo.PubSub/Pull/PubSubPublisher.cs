@@ -1,11 +1,13 @@
 using System.Text.Json;
+
 using Google.Api.Gax;
 using Google.Api.Gax.Grpc;
 using Google.Cloud.PubSub.V1;
 using Google.Protobuf;
+
 using PubSubAspireDemo.PubSub.Contracts;
 
-namespace PubSubAspireDemo.PubSub;
+namespace PubSubAspireDemo.PubSub.Pull;
 
 public sealed class PubSubPublisher
 {

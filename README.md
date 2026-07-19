@@ -5,6 +5,7 @@ Projeto de demonstração para simular o **Google Cloud Pub/Sub** localmente usa
 O objetivo é permitir que uma API publique mensagens em um tópico local e que um Worker C# consuma essas mensagens em modo debug, sem depender de credenciais reais da GCP e sem acessar tópicos de produção.
 
 ---
+# Modo PULL no projeto Aspire
 
 ## Objetivo
 
@@ -959,3 +960,138 @@ Ele permite:
 ```
 
 Esse modelo é adequado para análise de problemas em workers C# que consomem mensagens Pub/Sub no padrão pull.
+
+--- 
+
+# Modo PUSH no projeto Aspire
+
+Esta seção adiciona o modo **Pub/Sub Push** ao projeto Aspire.
+
+No modo push, o consumidor não é o Worker. O consumidor é um endpoint HTTP da API:
+
+```http
+POST /pubsub-push/pedidos/criados
+```
+
+## Fluxos disponíveis
+
+### Pull
+
+```text
+API
+  -> pedido-criado-topic
+      -> pedido-criado-worker-sub
+          -> Worker
+```
+
+### Push
+
+```text
+API
+  -> pedido-criado-push-topic
+      -> pedido-criado-push-sub
+          -> POST /pubsub-push/pedidos/criados
+```
+
+## Como rodar no Aspire
+
+No Visual Studio, deixe o startup project como:
+
+```text
+PubSubAspireDemo.AppHost
+```
+
+O AppHost sobe:
+
+```text
+pubsub-emulator
+api
+worker
+```
+
+No Aspire, o AppHost funciona como a definição da aplicação distribuída e organiza os recursos e dependências entre eles.
+
+## Como testar Pull
+
+1. Rode o `PubSubAspireDemo.AppHost`.
+2. Abra o dashboard do Aspire.
+3. Abra a URL da API.
+4. Acesse:
+
+```text
+http://localhost:5044/swagger
+```
+
+5. Coloque breakpoint no Worker:
+
+```text
+src/PubSubAspireDemo.Worker/WorkerConsumer.cs
+```
+
+6. Execute no Swagger:
+
+```http
+POST /pedidos/publicar-fake
+```
+
+O breakpoint deve cair no Worker.
+
+## Como testar Push
+
+1. Rode o `PubSubAspireDemo.AppHost`.
+2. Abra:
+
+```text
+http://localhost:5044/swagger
+```
+
+3. Coloque breakpoint na API:
+
+```text
+src/PubSubAspireDemo.Api/Program.cs
+```
+
+Endpoint:
+
+```http
+POST /pubsub-push/pedidos/criados
+```
+
+4. Execute no Swagger:
+
+```http
+POST /pedidos/publicar-push-fake
+```
+
+O Pub/Sub Emulator vai chamar automaticamente:
+
+```http
+POST /pubsub-push/pedidos/criados
+```
+
+O breakpoint deve cair na API.
+
+## Por que o PushEndpoint usa host.docker.internal?
+
+No Aspire, o Pub/Sub Emulator roda em container e a API roda como processo local.
+
+Então o container precisa chamar uma aplicação que está no host.
+
+Por isso o endpoint configurado para a push subscription é:
+
+```text
+http://host.docker.internal:5044/pubsub-push/pedidos/criados
+```
+
+## Configuração usada no AppHost
+
+```text
+PubSub__PushTopicId=pedido-criado-push-topic
+PubSub__PushSubscriptionId=pedido-criado-push-sub
+PubSub__PushEndpoint=http://host.docker.internal:5044/pubsub-push/pedidos/criados
+PubSub__EmulatorHost=127.0.0.1:8085
+```
+
+## Observação
+
+O Worker pode ficar rodando junto no AppHost. Ele não interfere no modo push porque o modo push usa outro tópico e outra subscription.

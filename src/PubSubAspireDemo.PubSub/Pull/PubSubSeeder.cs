@@ -1,9 +1,10 @@
 using Google.Api.Gax;
 using Google.Api.Gax.Grpc;
 using Google.Cloud.PubSub.V1;
+
 using Grpc.Core;
 
-namespace PubSubAspireDemo.PubSub;
+namespace PubSubAspireDemo.PubSub.Pull;
 
 public sealed class PubSubSeeder
 {

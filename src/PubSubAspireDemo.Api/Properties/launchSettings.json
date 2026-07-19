@@ -13,10 +13,13 @@
         "PUBSUB_EMULATOR_HOST": "127.0.0.1:8085",
         "PUBSUB_PROJECT_ID": "local-project",
         "PubSub__UseEmulator": "true",
+        "PubSub__EmulatorHost": "127.0.0.1:8085",
         "PubSub__ProjectId": "local-project",
         "PubSub__TopicId": "pedido-criado-topic",
         "PubSub__SubscriptionId": "pedido-criado-worker-sub",
-        "PubSub__EmulatorHost": "127.0.0.1:8085"
+        "PubSub__PushTopicId": "pedido-criado-push-topic",
+        "PubSub__PushSubscriptionId": "pedido-criado-push-sub",
+        "PubSub__PushEndpoint": "http://host.docker.internal:5044/api/aspire/pubsub/push/pedidos/criados"
       }
     }
   }

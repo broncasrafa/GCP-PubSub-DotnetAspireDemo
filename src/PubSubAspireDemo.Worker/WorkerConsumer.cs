@@ -1,8 +1,11 @@
 using System.Text.Json;
+
 using Google.Api.Gax;
 using Google.Api.Gax.Grpc;
 using Google.Cloud.PubSub.V1;
+
 using PubSubAspireDemo.PubSub;
+using PubSubAspireDemo.PubSub.Extensions;
 using PubSubAspireDemo.Worker.Contracts;
 
 namespace PubSubAspireDemo.Worker;
@@ -57,15 +60,15 @@ public sealed class WorkerConsumer
             Console.WriteLine($"[WorkerConsumer] Mensagem recebida. MessageId: {message.MessageId}");
             Console.WriteLine(json);
 
-            var evento = JsonSerializer.Deserialize<PedidoCriadoEvent>(
-                json,
-                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            var evento = JsonSerializer.Deserialize<PedidoCriadoEvent>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
             if (evento is null)
             {
                 Console.WriteLine("[WorkerConsumer] Mensagem invalida. Evento desserializado como null.");
                 return SubscriberClient.Reply.Nack;
             }
+
+            Console.WriteLine($"[WorkerConsumer] Mensagem recebida:\n{evento.ToJsonStr()}");
 
             await ProcessarPedidoCriadoAsync(evento, cancellationToken);
 

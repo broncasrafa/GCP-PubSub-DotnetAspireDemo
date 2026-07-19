@@ -6,8 +6,8 @@ public static class RegisterServices
 {
     public static IApplicationBuilder MapEndpoints(this WebApplication app)
     {
-        app.MapDefaultEndpoints();
-
+        app.MapDefaultPullEndpoints();
+        app.MapDefaultPushEndpoints();
         return app;
     }
 }

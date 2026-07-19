@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Configuration;
 using PubSubAspireDemo.PubSub;
+using PubSubAspireDemo.PubSub.Pull;
 
 Console.Title = "PubSubAspireDemo.Publisher";
 

@@ -5,10 +5,15 @@ namespace PubSubAspireDemo.PubSub;
 public sealed class PubSubOptions
 {
     public bool UseEmulator { get; set; } = true;
+    public string EmulatorHost { get; set; } = "localhost:8085";
+    // pull
     public string ProjectId { get; set; } = "local-project";
     public string TopicId { get; set; } = "pedido-criado-topic";
     public string SubscriptionId { get; set; } = "pedido-criado-worker-sub";
-    public string EmulatorHost { get; set; } = "localhost:8085";
+    // push
+    public string PushTopicId { get; set; } = "pedido-criado-push-topic";
+    public string PushSubscriptionId { get; set; } = "pedido-criado-push-sub";
+    public string PushEndpoint { get; set; } = "http://localhost:5044/api/aspire/pubsub/push/pedidos/criados";
 
     public static PubSubOptions Load(IConfiguration configuration)
     {
@@ -28,7 +33,10 @@ public sealed class PubSubOptions
 
     public void ApplyEnvironmentVariables()
     {
-        if (UseEmulator)
-            Environment.SetEnvironmentVariable("PUBSUB_EMULATOR_HOST", EmulatorHost);
+        if (!UseEmulator)
+            return;
+
+        Environment.SetEnvironmentVariable("PUBSUB_EMULATOR_HOST", EmulatorHost);
+        Environment.SetEnvironmentVariable("PUBSUB_PROJECT_ID", ProjectId);
     }
 }
